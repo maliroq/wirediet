@@ -4,9 +4,11 @@
 
 # WireDiet
 
-**Cut the chatter. Keep the features.**
+**Block smart-TV and IoT chatter without guessing what will break.**
 
-WireDiet is an experiment harness for building minimal, device-specific DNS policies. Import real query logs, test candidate blocks, record what breaks, and export only the policy you actually verified.
+WireDiet turns real DNS logs into small, reversible exact-host trials. Test the features you care about, narrow the domains in any failing batch, and export only the policy you actually verified.
+
+**Built for the part blocklists do not solve:** if a block breaks Netflix, AirPlay, updates, or another feature, isolate the rule that caused it instead of playing whitelist roulette.
 
 **WireDiet doesn't replace AdGuard Home or Pi-hole. It helps you decide what to put in them.**
 
@@ -14,7 +16,7 @@ WireDiet is an experiment harness for building minimal, device-specific DNS poli
   <img src="assets/screenshots/local-ui-hero.png" alt="WireDiet local UI showing Observe, Test and Verify stages" width="1000">
 </p>
 
-*Actual local UI rendered from the repository's synthetic fixture. No household DNS history is used in screenshots.*
+*Observe → test → narrow failures → verify → export. Unknown domains stay unknown.*
 
 <!-- launch-foundation:quick-install -->
 
