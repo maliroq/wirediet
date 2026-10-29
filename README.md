@@ -67,6 +67,25 @@ Resolver application remains manual in v0.1.
 
 ## Install
 
+### macOS — Homebrew (recommended)
+
+```bash
+brew install maliroq/tap/wirediet
+wirediet version
+```
+
+Homebrew builds WireDiet locally from the tagged source release. It does **not** install an unsigned downloaded macOS executable and does not require weakening Gatekeeper.
+
+Run `wirediet help` to see the available commands, then use the Quick start below for your first analysis.
+
+To uninstall the Homebrew package:
+
+```bash
+brew uninstall wirediet
+```
+
+WireDiet does not install a daemon or system service, and uninstalling the formula does not remove experiment files you created yourself.
+
 ### Go install — macOS, Linux, Windows
 
 If you already have Go 1.23+:
@@ -93,9 +112,9 @@ shasum -a 256 -c SHA256SUMS.txt
 
 On Linux, `sha256sum -c SHA256SUMS.txt` is also supported.
 
-### macOS
+### macOS distribution boundary
 
-WireDiet intentionally does not distribute an unsigned downloaded macOS executable. A downloaded unsigned CLI was blocked by Gatekeeper during real validation, so WireDiet does not ask users to weaken macOS security. Use `go install` or build from source for the core release; Homebrew is the next distribution pass.
+WireDiet intentionally does not distribute an unsigned downloaded macOS executable. A downloaded unsigned CLI was blocked by Gatekeeper during real validation, so WireDiet does not ask users to weaken macOS security. Use Homebrew, `go install`, or build from source.
 
 ### Build from source
 
@@ -111,7 +130,7 @@ go build -trimpath -o wirediet ./cmd/wirediet
 Analyze a saved resolver export:
 
 ```bash
-./wirediet scan \
+wirediet scan \
   --input query-log.json \
   --format adguard \
   --device 192.0.2.42 \
@@ -121,7 +140,7 @@ Analyze a saved resolver export:
 Open the local UI:
 
 ```bash
-./wirediet serve --analysis analysis.json
+wirediet serve --analysis analysis.json
 ```
 
 Then visit `http://127.0.0.1:8787`.
@@ -129,7 +148,7 @@ Then visit `http://127.0.0.1:8787`.
 If you already have an experiment session, the same read-only UI can show its Test/Verify state:
 
 ```bash
-./wirediet serve \
+wirediet serve \
   --analysis analysis.json \
   --session .wirediet/session.json
 ```
@@ -137,12 +156,12 @@ If you already have an experiment session, the same read-only UI can show its Te
 Start a trial:
 
 ```bash
-./wirediet experiment init \
+wirediet experiment init \
   --analysis analysis.json \
   --features "Netflix,YouTube,AirPlay,app updates" \
   --session .wirediet/session.json
 
-./wirediet experiment next \
+wirediet experiment next \
   --session .wirediet/session.json \
   --out-dir .wirediet/policies
 ```
@@ -150,7 +169,7 @@ Start a trial:
 After manually applying the generated test policy only to the intended client, record every required feature:
 
 ```bash
-./wirediet experiment record \
+wirediet experiment record \
   --session .wirediet/session.json \
   --trial trial-REPLACE_ME \
   --results "Netflix=pass,YouTube=pass,AirPlay=pass,app updates=pass"
@@ -159,7 +178,7 @@ After manually applying the generated test policy only to the intended client, r
 When aggregate verification passes:
 
 ```bash
-./wirediet export \
+wirediet export \
   --session .wirediet/session.json \
   --out-dir final-policy
 ```
@@ -243,13 +262,13 @@ See [`docs/privacy-model.md`](docs/privacy-model.md) and [`docs/threat-model.md`
 
 Tagged releases publish a source archive plus prebuilt **Linux amd64 and Linux arm64** archives with SHA-256 checksums.
 
-For macOS, use the source-built installation paths above. WireDiet intentionally does not distribute an unsigned downloaded macOS executable after real validation showed Gatekeeper blocking that path. Windows remains source/Go-install only until its real distribution experience is independently validated.
+For macOS, use Homebrew or the source-built installation paths above. WireDiet intentionally does not distribute an unsigned downloaded macOS executable after real validation showed Gatekeeper blocking that path. Windows remains source/Go-install only until its real distribution experience is independently validated.
 
 Startup:
 
 ```bash
-./wirediet version
-./wirediet serve --analysis analysis.json
+wirediet version
+wirediet serve --analysis analysis.json
 ```
 
 Cleanup/uninstall for a standalone binary is simply:
