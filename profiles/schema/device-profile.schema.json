@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WireDiet community device profile",
+  "type": "object",
+  "required": ["schema_version", "device", "observations", "tests", "verification"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "device": {
+      "type": "object",
+      "required": ["vendor", "model_family"],
+      "additionalProperties": false,
+      "properties": {
+        "vendor": {"type": "string", "minLength": 1, "maxLength": 120},
+        "model_family": {"type": "string", "minLength": 1, "maxLength": 160},
+        "firmware": {"type": ["string", "null"], "maxLength": 160},
+        "region": {"type": ["string", "null"], "maxLength": 80},
+        "platform": {"type": ["string", "null"], "maxLength": 120}
+      }
+    },
+    "observations": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": ["domain", "classification", "confidence"],
+        "additionalProperties": false,
+        "properties": {
+          "domain": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 253,
+            "pattern": "^(?=.{1,253}$)(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\\.)*[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$"
+          },
+          "classification": {
+            "enum": ["core_service", "cdn", "authentication", "software_update", "streaming_service", "telemetry", "advertising", "acr", "content_recognition", "crash_reporting", "vendor_analytics", "unknown"]
+          },
+          "confidence": {"enum": ["high", "medium", "low", "unknown"]},
+          "evidence_refs": {
+            "type": "array",
+            "maxItems": 50,
+            "uniqueItems": true,
+            "items": {"type": "string", "format": "uri", "pattern": "^https?://", "maxLength": 2048}
+          }
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "object",
+        "required": ["feature", "blocked_domains", "result", "verified_at"],
+        "additionalProperties": false,
+        "properties": {
+          "feature": {"type": "string", "minLength": 1, "maxLength": 128},
+          "blocked_domains": {
+            "type": "array",
+            "maxItems": 1000,
+            "items": {"type": "string", "minLength": 1, "maxLength": 253},
+            "uniqueItems": true
+          },
+          "result": {"enum": ["pass", "fail", "partial", "unknown"]},
+          "verified_at": {"type": "string", "format": "date"},
+          "notes": {"type": "string", "maxLength": 4000}
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["independent_devices", "scope", "redaction_reviewed"],
+      "additionalProperties": false,
+      "properties": {
+        "independent_devices": {"type": "integer", "minimum": 1, "maximum": 1000000},
+        "scope": {"enum": ["single_device", "same_model", "model_family", "cross_model"]},
+        "redaction_reviewed": {"type": "boolean"},
+        "contributor": {"type": ["string", "null"], "maxLength": 160}
+      }
+    }
+  }
+}

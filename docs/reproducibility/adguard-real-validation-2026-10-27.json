@@ -1,0 +1,60 @@
+{
+  "schema_version": "1",
+  "validation_date": "2026-10-27",
+  "scope": "sanitized real resolver/external-client validation",
+  "privacy": {
+    "contains_private_ip": false,
+    "contains_mac_address": false,
+    "contains_device_name": false,
+    "contains_household_domain_history": false,
+    "contains_credentials": false,
+    "contains_exact_household_timestamps": false
+  },
+  "resolver": {
+    "product": "AdGuard Home",
+    "version": "v0.107.79",
+    "deployment": "native secondary macOS host",
+    "admin_ui": "loopback-only",
+    "dns_client_scope": "loopback plus one allowlisted external client during validation"
+  },
+  "real_import": {
+    "resolver_exact_client_entries": 147,
+    "wirediet_parsed_events": 147,
+    "distinct_clients_in_private_export": 1,
+    "unique_observed_domains": 43,
+    "result": "PASS"
+  },
+  "candidate_selection": {
+    "wirediet_evidence_backed_low_risk_candidates": 0,
+    "independent_exact_tracker_radar_low_risk_matches": 0,
+    "unknown_hostname_promoted": false
+  },
+  "controlled_exact_host_trial": {
+    "organic_baseline_candidate": false,
+    "purpose": "validate exact-host resolver behavior without inventing an organic telemetry classification",
+    "rule": "www.google-analytics.com",
+    "target_result": "blocked to 0.0.0.0",
+    "parent_control": "google-analytics.com resolved normally",
+    "sibling_control": "ssl.google-analytics.com resolved normally",
+    "result": "PASS"
+  },
+  "feature_preservation": {
+    "external_client_type": "iPhone",
+    "cellular_disabled_during_test": true,
+    "required_features_tested": 2,
+    "result": "PASS",
+    "claim_scope": "controlled resolver/feature-preservation workflow only"
+  },
+  "rollback": {
+    "temporary_rule_removed": true,
+    "client_dns_restored_to_automatic": true,
+    "controlled_hostname_resolved_normally_afterward": true,
+    "client_behavior_restored": true,
+    "result": "PASS"
+  },
+  "unverified": {
+    "live_failure_split_cycle": "NOT VERIFIED",
+    "real_smart_tv_or_iot_feature_trial": "NOT VERIFIED"
+  },
+  "wire_diet_version": "v0.1.0-preview.2"
+}

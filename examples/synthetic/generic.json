@@ -1,0 +1,5 @@
+[
+  {"timestamp":"2026-10-26T14:00:00Z","client":"192.0.2.42","domain":"samsungacr.com","status":"allowed"},
+  {"timestamp":"2026-10-26T14:00:01Z","client":"192.0.2.42","domain":"cdn.samsungcloudsolution.com","status":"allowed"},
+  {"timestamp":"2026-10-26T14:00:02Z","client":"192.0.2.42","domain":"api.example.test","status":"allowed"}
+]

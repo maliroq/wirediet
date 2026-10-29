@@ -1,0 +1,9 @@
+timestamp,client,domain,status
+1793023200,192.0.2.42,us.ad.lgsmartad.com,FORWARDED
+1793023201,192.0.2.42,us.ad.lgsmartad.com,FORWARDED
+1793023202,192.0.2.42,cdpbeacon.lgtvcommon.com,FORWARDED
+1793023203,192.0.2.42,eic-ngfts.lge.com,FORWARDED
+1793023204,192.0.2.42,snu.lge.com,FORWARDED
+1793023205,192.0.2.42,nrdp.nccp.netflix.com,FORWARDED
+1793023206,192.0.2.42,youtubei.googleapis.com,FORWARDED
+1793023207,198.51.100.9,example.org,FORWARDED

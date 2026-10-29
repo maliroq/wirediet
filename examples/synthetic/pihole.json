@@ -1,0 +1,10 @@
+{
+  "queries": [
+    {"id":101,"time":1793023200,"type":"A","status":"FORWARDED","domain":"us.ad.lgsmartad.com","client":{"ip":"192.0.2.42","name":"living-room-tv.example.test"}},
+    {"id":102,"time":1793023201,"type":"A","status":"FORWARDED","domain":"snu.lge.com","client":{"ip":"192.0.2.42","name":"living-room-tv.example.test"}},
+    {"id":103,"time":1793023202,"type":"A","status":"FORWARDED","domain":"nrdp.nccp.netflix.com","client":{"ip":"192.0.2.42","name":"living-room-tv.example.test"}}
+  ],
+  "cursor": 103,
+  "recordsTotal": 3,
+  "recordsFiltered": 3
+}

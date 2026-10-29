@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WireDiet evidence database",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reviewed_at",
+    "records"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "pattern",
+          "match",
+          "category",
+          "confidence",
+          "disposition",
+          "sources"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "pattern": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 253
+          },
+          "match": {
+            "enum": [
+              "exact",
+              "suffix"
+            ]
+          },
+          "category": {
+            "enum": [
+              "core_service",
+              "cdn",
+              "authentication",
+              "software_update",
+              "streaming_service",
+              "telemetry",
+              "advertising",
+              "acr",
+              "content_recognition",
+              "crash_reporting",
+              "vendor_analytics",
+              "unknown"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "disposition": {
+            "enum": [
+              "block_candidate",
+              "protect",
+              "observe"
+            ]
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "title",
+                "url"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https?://",
+                  "maxLength": 2048
+                }
+              }
+            },
+            "maxItems": 50,
+            "minItems": 1
+          }
+        }
+      },
+      "maxItems": 100000
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+name: Evidence / device observation
+description: Propose a domain classification or reproducible device-profile result
+title: "[evidence] "
+labels: [evidence]
+body:
+  - type: markdown
+    attributes:
+      value: "One observation is not universal truth. Do not post raw household logs or private identifiers."
+  - type: input
+    id: device
+    attributes:
+      label: Vendor / model family
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware / platform version
+  - type: input
+    id: region
+    attributes:
+      label: Region
+  - type: input
+    id: domain
+    attributes:
+      label: Exact domain or proposed suffix
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Proposed category
+      options: [core_service, cdn, authentication, software_update, streaming_service, telemetry, advertising, acr, content_recognition, crash_reporting, vendor_analytics, unknown]
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and sources
+      description: Link auditable sources and explain why the proposed scope is no broader than the evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: Feature test and result
+      description: What exact domains were blocked, which feature was tested, and what happened?

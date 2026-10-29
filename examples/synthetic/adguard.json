@@ -1,0 +1,9 @@
+{
+  "oldest": "2026-10-26T14:00:00Z",
+  "data": [
+    {"client":"192.0.2.42","status":"NOERROR","time":"2026-10-26T14:10:00Z","question":{"name":"us.ad.lgsmartad.com","type":"A"}},
+    {"client":"192.0.2.42","status":"NOERROR","time":"2026-10-26T14:10:01Z","question":{"name":"cdpbeacon.lgtvcommon.com","type":"A"}},
+    {"client":"192.0.2.42","status":"NOERROR","time":"2026-10-26T14:10:02Z","question":{"name":"eic-ngfts.lge.com","type":"A"}},
+    {"client":"192.0.2.42","status":"NOERROR","time":"2026-10-26T14:10:03Z","question":{"name":"nrdp.nccp.netflix.com","type":"A"}}
+  ]
+}

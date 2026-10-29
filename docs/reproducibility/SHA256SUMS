@@ -1,0 +1,5 @@
+# Pinned sanitized historical real-world evidence.
+# These files describe the completed 2026-10-27 physical validation and are
+# intentionally independent of artifacts/current_run_reproducibility_report.*.
+c66453d194bb2857ebbbb2a5c8c62ba9b3ca586fa1fa6656becc8afe7fcbfbfa  adguard-real-validation-2026-10-27.json
+5a3560c455c044ed00f8c208de03c24202d473c212a695541b52421d32250a2e  adguard-real-validation-2026-10-27.md

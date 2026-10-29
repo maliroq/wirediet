@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - run: go vet ./...
+      - run: go test -race ./... -count=1
+
+  build-linux:
+    needs: verify
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Build and package
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          DIR="wirediet_${VERSION}_linux_${{ matrix.arch }}"
+          ARCHIVE="${DIR}.tar.gz"
+          mkdir -p "dist/${DIR}"
+          CGO_ENABLED=0 GOOS=linux GOARCH="${{ matrix.arch }}" \
+            go build -trimpath -ldflags "-s -w -X main.version=${GITHUB_REF_NAME}" -o "dist/${DIR}/wirediet" ./cmd/wirediet
+          cp LICENSE README.md "dist/${DIR}/"
+          tar -C dist -czf "dist/${ARCHIVE}" "${DIR}"
+          rm -rf "dist/${DIR}"
+          (cd dist && sha256sum "${ARCHIVE}" > "${ARCHIVE}.sha256")
+          TMP="$(mktemp -d)"
+          tar -xzf "dist/${ARCHIVE}" -C "$TMP"
+          "$TMP/${DIR}/wirediet" version | grep -F "${GITHUB_REF_NAME}"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: linux-${{ matrix.arch }}
+          path: dist/
+          if-no-files-found: error
+
+  release:
+    needs: build-linux
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: linux-*
+          path: dist
+          merge-multiple: true
+      - name: Build source archive and verify checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          git archive --format=zip --prefix="wirediet-${VERSION}/" -o "dist/wirediet_${VERSION}_source.zip" HEAD
+          (
+            cd dist
+            cat *.tar.gz.sha256 > SHA256SUMS.txt
+            sha256sum "wirediet_${VERSION}_source.zip" >> SHA256SUMS.txt
+            rm -f *.tar.gz.sha256
+            sha256sum -c SHA256SUMS.txt
+          )
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "$GITHUB_REF_NAME" \
+            --title "WireDiet $GITHUB_REF_NAME" \
+            --notes-file RELEASE_NOTES.md \
+            --verify-tag \
+            --latest \
+            dist/*.tar.gz \
+            dist/*_source.zip \
+            dist/SHA256SUMS.txt

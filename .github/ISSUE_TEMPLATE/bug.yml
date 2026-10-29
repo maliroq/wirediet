@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a reproducible WireDiet software bug
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not attach raw household DNS logs, PCAPs, router backups, credentials, MAC addresses, or private device names. Use synthetic/minimized data or a reviewed redacted report."
+  - type: input
+    id: version
+    attributes:
+      label: WireDiet version
+      placeholder: v0.1.0 or commit
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [macOS, Linux, Windows, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include the command and synthetic/minimized input shape.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true

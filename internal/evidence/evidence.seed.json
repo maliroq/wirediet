@@ -1,0 +1,300 @@
+{
+  "schema_version": "1",
+  "reviewed_at": "2026-10-27",
+  "records": [
+    {
+      "pattern": "lgsmartad.com",
+      "match": "suffix",
+      "category": "advertising",
+      "confidence": "high",
+      "disposition": "block_candidate",
+      "notes": "LG Smart TV advertising domain family. Endpoint purpose is supported by current network metadata; blocking safety still requires device/feature testing.",
+      "sources": [
+        {
+          "title": "Netify \u2014 lgsmartad.com / LG Smart TV",
+          "url": "https://www.netify.ai/resources/domains/lgsmartad.com"
+        },
+        {
+          "title": "Peter Lowe ad-server list \u2014 lgsmartad.com",
+          "url": "https://pgl.yoyo.org/adservers/details.php?hostname=lgsmartad.com"
+        }
+      ]
+    },
+    {
+      "pattern": "alphonso.tv",
+      "match": "suffix",
+      "category": "acr",
+      "confidence": "high",
+      "disposition": "block_candidate",
+      "notes": "Alphonso documents ACR collection technology used on smart TVs. Treat blocking safety as device-specific even though endpoint purpose is documented.",
+      "sources": [
+        {
+          "title": "Netify \u2014 alphonso.tv / Alphonso advertising and analytics",
+          "url": "https://www.netify.ai/resources/domains/alphonso.tv"
+        },
+        {
+          "title": "Alphonso Smart TV Privacy Policy",
+          "url": "https://alphonso.tv/privacy/smart-tvs/smart-tv-privacy/"
+        },
+        {
+          "title": "Alphonso ACR Software Terms of Service",
+          "url": "https://alphonso.tv/privacy/smart-tvs/smart-tv-tos/"
+        }
+      ]
+    },
+    {
+      "pattern": "samsungacr.com",
+      "match": "suffix",
+      "category": "acr",
+      "confidence": "high",
+      "disposition": "block_candidate",
+      "notes": "Domain family associated with Samsung Ads ACR infrastructure in current network metadata. Device/region behavior can vary.",
+      "sources": [
+        {
+          "title": "Netify \u2014 samsungacr.com / Samsung Ads",
+          "url": "https://www.netify.ai/resources/domains/samsungacr.com"
+        },
+        {
+          "title": "Samsung Ads \u2014 application/domain metadata",
+          "url": "https://www.netify.ai/resources/applications/samsung-ads"
+        }
+      ]
+    },
+    {
+      "pattern": "samsungads.com",
+      "match": "suffix",
+      "category": "advertising",
+      "confidence": "high",
+      "disposition": "block_candidate",
+      "notes": "Samsung advertising domain family. Classification is about endpoint purpose, not a universal safe-to-block claim.",
+      "sources": [
+        {
+          "title": "Netify \u2014 samsungads.com / Samsung Ads",
+          "url": "https://www.netify.ai/resources/domains/samsungads.com"
+        },
+        {
+          "title": "Samsung Ads \u2014 Samsung TV Plus overview",
+          "url": "https://image-us.samsung.com/SamsungUS/samsungbusiness/samsung-ads/resources/form/samsung-tv-plus/samsung-ads-samsung-tv-plus.pdf"
+        }
+      ]
+    },
+    {
+      "pattern": "logs.roku.com",
+      "match": "suffix",
+      "category": "telemetry",
+      "confidence": "low",
+      "disposition": "observe",
+      "notes": "Community/blocklist evidence alone is insufficient for WireDiet to auto-promote this hostname to a live block candidate. Keep observable until stronger provenance is reviewed.",
+      "sources": [
+        {
+          "title": "Block List Project smart-tv list",
+          "url": "https://github.com/blocklistproject/Lists/blob/main/smart-tv.txt"
+        },
+        {
+          "title": "TV DNS Blocklist",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "track.sr.roku.com",
+      "match": "exact",
+      "category": "telemetry",
+      "confidence": "low",
+      "disposition": "observe",
+      "notes": "Community/blocklist evidence alone is insufficient for WireDiet to auto-promote this hostname to a live block candidate. Keep observable until stronger provenance is reviewed.",
+      "sources": [
+        {
+          "title": "Block List Project smart-tv list",
+          "url": "https://github.com/blocklistproject/Lists/blob/main/smart-tv.txt"
+        }
+      ]
+    },
+    {
+      "pattern": "traces.sr.roku.com",
+      "match": "exact",
+      "category": "telemetry",
+      "confidence": "low",
+      "disposition": "observe",
+      "notes": "Community/blocklist evidence alone is insufficient for WireDiet to auto-promote this hostname to a live block candidate. Keep observable until stronger provenance is reviewed.",
+      "sources": [
+        {
+          "title": "Block List Project smart-tv list",
+          "url": "https://github.com/blocklistproject/Lists/blob/main/smart-tv.txt"
+        }
+      ]
+    },
+    {
+      "pattern": "events.cid.samba.tv",
+      "match": "exact",
+      "category": "content_recognition",
+      "confidence": "low",
+      "disposition": "observe",
+      "notes": "Community/blocklist evidence alone is insufficient for WireDiet to auto-promote this hostname to a live block candidate. Keep observable until stronger provenance is reviewed.",
+      "sources": [
+        {
+          "title": "Block List Project smart-tv list",
+          "url": "https://github.com/blocklistproject/Lists/blob/main/smart-tv.txt"
+        }
+      ]
+    },
+    {
+      "pattern": "cdpbeacon.lgtvcommon.com",
+      "match": "exact",
+      "category": "vendor_analytics",
+      "confidence": "low",
+      "disposition": "observe",
+      "notes": "Current 2026 LG TV blocklist FAQ marks the bare hostname decommissioned/NXDOMAIN; keep as historical observation only, not a live test candidate.",
+      "sources": [
+        {
+          "title": "LG TV Blocklist FAQ \u2014 bare cdpbeacon hostname decommissioned",
+          "url": "https://github.com/furkan-bayrak/lg-tv-blocklist/blob/main/docs/faq.md"
+        }
+      ]
+    },
+    {
+      "pattern": "snu.lge.com",
+      "match": "suffix",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "LG software-update family. WireDiet does not recommend blocking update infrastructure by default.",
+      "sources": [
+        {
+          "title": "LG TV Blocklist 2026 design \u2014 firmware OTA check",
+          "url": "https://github.com/furkan-bayrak/lg-tv-blocklist/blob/main/docs/2026-09-09-lg-tv-blocklist-design.md"
+        }
+      ]
+    },
+    {
+      "pattern": "su.lge.com",
+      "match": "suffix",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "LG software-update family.",
+      "sources": [
+        {
+          "title": "LG TV Blocklist 2026 design \u2014 OTA update servers",
+          "url": "https://github.com/furkan-bayrak/lg-tv-blocklist/blob/main/docs/2026-09-09-lg-tv-blocklist-design.md"
+        }
+      ]
+    },
+    {
+      "pattern": "lgappstv.com",
+      "match": "suffix",
+      "category": "core_service",
+      "confidence": "medium",
+      "disposition": "protect",
+      "notes": "LG application/content-store family; community reports document store breakage when required hosts are blocked.",
+      "sources": [
+        {
+          "title": "LG TV Blocklist 2026 design \u2014 store-CDN-adjacent endpoint",
+          "url": "https://github.com/furkan-bayrak/lg-tv-blocklist/blob/main/docs/2026-09-09-lg-tv-blocklist-design.md"
+        },
+        {
+          "title": "Pi-hole community LG Content Store breakage report",
+          "url": "https://www.reddit.com/r/pihole/comments/takxwg/pihole_blocks_my_lg_tv_from_accessing_the_content/"
+        }
+      ]
+    },
+    {
+      "pattern": "eic-ngfts.lge.com",
+      "match": "exact",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "LG Content Store dependency documented by live verification in a current blocklist project.",
+      "sources": [
+        {
+          "title": "LG TV Blocklist 2026 design \u2014 update/content file transfer",
+          "url": "https://github.com/furkan-bayrak/lg-tv-blocklist/blob/main/docs/2026-09-09-lg-tv-blocklist-design.md"
+        }
+      ]
+    },
+    {
+      "pattern": "samsungotn.net",
+      "match": "suffix",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Samsung OTA/update family. Keep reachable unless a user deliberately accepts update risk outside WireDiet's default workflow.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist KEEP-WORKING notes",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "cdn.samsungcloudsolution.com",
+      "match": "exact",
+      "category": "core_service",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Current blocklist documentation reports application breakage when this endpoint is blocked.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist limitations",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "samsungapps.com",
+      "match": "suffix",
+      "category": "core_service",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Samsung app-store family.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist KEEP-WORKING notes",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "tvupdate.roku.com",
+      "match": "exact",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Roku update endpoint.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist KEEP-WORKING notes",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "channels.roku.com",
+      "match": "exact",
+      "category": "core_service",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Roku channel/app-store service.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist KEEP-WORKING notes",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    },
+    {
+      "pattern": "softwareupdates.amazon.com",
+      "match": "exact",
+      "category": "software_update",
+      "confidence": "high",
+      "disposition": "protect",
+      "notes": "Amazon Fire TV software-update endpoint.",
+      "sources": [
+        {
+          "title": "TV DNS Blocklist KEEP-WORKING notes",
+          "url": "https://github.com/Okazakee/tv-dns-blocklist"
+        }
+      ]
+    }
+  ]
+}

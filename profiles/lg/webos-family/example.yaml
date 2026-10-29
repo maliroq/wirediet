@@ -1,0 +1,30 @@
+schema_version: "1"
+device:
+  vendor: LG
+  model_family: webOS example family
+  firmware: "synthetic-demo"
+  region: US
+  platform: webOS
+observations:
+  - domain: us.ad.lgsmartad.com
+    classification: advertising
+    confidence: high
+    evidence_refs:
+      - https://www.netify.ai/resources/domains/lgsmartad.com
+  - domain: eic-ngfts.lge.com
+    classification: core_service
+    confidence: high
+    evidence_refs:
+      - https://github.com/Okazakee/tv-dns-blocklist
+tests:
+  - feature: Netflix
+    blocked_domains:
+      - us.ad.lgsmartad.com
+    result: pass
+    verified_at: "2026-10-26"
+    notes: Synthetic example only; not a real-device claim.
+verification:
+  independent_devices: 1
+  scope: single_device
+  redaction_reviewed: true
+  contributor: null

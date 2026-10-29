@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Formatting
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=$(find . -name '*.go' -type f)
+          test -z "$(gofmt -l $files)"
+      - run: go vet ./...
+      - run: go test -race ./... -count=1
+      - run: go build -trimpath -o /tmp/wirediet ./cmd/wirediet
+      - run: /tmp/wirediet version
+      - name: Synthetic end-to-end CLI smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/wirediet scan --input examples/synthetic/generic.csv --format csv --device 192.0.2.42 --out /tmp/analysis.json
+          /tmp/wirediet experiment init --analysis /tmp/analysis.json --features "Netflix,YouTube,AirPlay,app updates" --session /tmp/session.json
+          /tmp/wirediet experiment next --session /tmp/session.json --out-dir /tmp/policies
+          trial="$(basename "$(find /tmp/policies -type d -mindepth 1 -maxdepth 1 | head -n1)")"
+          test -n "$trial"
+          /tmp/wirediet experiment record --session /tmp/session.json --trial "$trial" --results "Netflix=pass,YouTube=pass,AirPlay=pass,app updates=pass"
+          /tmp/wirediet export --session /tmp/session.json --out-dir /tmp/final-policy
+          test -s /tmp/final-policy/rollback.json
+
+  macos:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - run: go test ./... -count=1
+      - run: go build -trimpath -o /tmp/wirediet ./cmd/wirediet
+      - run: /tmp/wirediet version
+
+  windows-compile:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Compile Windows targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -o /tmp/wirediet-windows-amd64.exe ./cmd/wirediet
+          CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -trimpath -o /tmp/wirediet-windows-arm64.exe ./cmd/wirediet

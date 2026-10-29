@@ -1,0 +1,14 @@
+/bin/
+/.wirediet/
+analysis.json
+analysis.public.json
+wirediet-policy/
+final-policy/
+.DS_Store
+*.pcap
+*.pcapng
+*.log.private
+
+/bin-wirediet
+
+/artifacts/

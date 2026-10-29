@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">WireDiet project mark</title>
+  <desc id="desc">Three network paths enter a trim boundary; one verified path continues.</desc>
+  <rect width="128" height="128" rx="28" fill="#0B1720"/>
+  <path d="M14 34 C34 34 39 48 58 48" fill="none" stroke="#8296A2" stroke-width="10" stroke-linecap="round"/>
+  <path d="M14 64 C34 64 39 64 58 64" fill="none" stroke="#2B8BDC" stroke-width="10" stroke-linecap="round"/>
+  <path d="M14 94 C34 94 39 80 58 80" fill="none" stroke="#D79A3B" stroke-width="10" stroke-linecap="round"/>
+  <path d="M66 24 V104" fill="none" stroke="#D8E3E9" stroke-width="10" stroke-linecap="round"/>
+  <path d="M76 64 H104" fill="none" stroke="#65D58B" stroke-width="10" stroke-linecap="round"/>
+  <path d="M96 50 L111 64 L96 78" fill="none" stroke="#65D58B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

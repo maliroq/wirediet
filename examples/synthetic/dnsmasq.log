@@ -1,0 +1,4 @@
+Oct 26 10:00:01 dnsmasq[100]: query[A] us.ad.lgsmartad.com from 192.0.2.42
+Oct 26 10:00:02 dnsmasq[100]: query[A] cdpbeacon.lgtvcommon.com from 192.0.2.42
+Oct 26 10:00:03 dnsmasq[100]: query[A] eic-ngfts.lge.com from 192.0.2.42
+Oct 26 10:00:04 dnsmasq[100]: query[A] nrdp.nccp.netflix.com from 192.0.2.42

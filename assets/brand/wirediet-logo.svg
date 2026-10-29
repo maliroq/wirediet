@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" role="img" aria-labelledby="title desc">
+  <title id="title">WireDiet</title><desc id="desc">WireDiet wordmark with trimmed network-path project mark.</desc>
+  <rect width="620" height="160" rx="24" fill="#F7F9FA"/>
+  <g transform="translate(20 16) scale(1)">
+    <rect width="128" height="128" rx="28" fill="#0B1720"/>
+    <path d="M14 34 C34 34 39 48 58 48" fill="none" stroke="#8296A2" stroke-width="10" stroke-linecap="round"/>
+    <path d="M14 64 C34 64 39 64 58 64" fill="none" stroke="#2B8BDC" stroke-width="10" stroke-linecap="round"/>
+    <path d="M14 94 C34 94 39 80 58 80" fill="none" stroke="#D79A3B" stroke-width="10" stroke-linecap="round"/>
+    <path d="M66 24 V104" fill="none" stroke="#D8E3E9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M76 64 H104" fill="none" stroke="#65D58B" stroke-width="10" stroke-linecap="round"/>
+    <path d="M96 50 L111 64 L96 78" fill="none" stroke="#65D58B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="176" y="77" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="54" font-weight="800" fill="#13212A">WireDiet</text>
+  <text x="178" y="112" font-family="Inter, ui-sans-serif, system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#526570">Cut the chatter. Keep the features.</text>
+</svg>
