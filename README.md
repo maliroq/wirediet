@@ -16,6 +16,17 @@ WireDiet is an experiment harness for building minimal, device-specific DNS poli
 
 *Actual local UI rendered from the repository's synthetic fixture. No household DNS history is used in screenshots.*
 
+<!-- launch-foundation:quick-install -->
+
+### Quick install
+
+```bash
+brew install maliroq/tap/wirediet
+```
+
+Homebrew builds WireDiet locally from the tagged source release. It does **not** install an unsigned downloaded macOS executable and does not require weakening Gatekeeper.
+
+
 ## What WireDiet does differently
 
 Pi-hole, AdGuard Home, dnsmasq, Unbound and OpenWrt are enforcement layers. They are good at applying DNS policy.
